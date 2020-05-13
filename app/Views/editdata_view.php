@@ -4,7 +4,7 @@
             <h1 class="text-center text-success mt-4"> <?= $h1;?> </h1>
         </div>
         <div class="col-sm-12">
-            <form action="/crud/edit" method="post">
+            <form action="/crud/edit/<?= $getEdit->nim; ?>" method="post">
                 <div class="form-group">
                     <label for="inputnim">NIM</label>
                     <input type="number" class="form-control" name="nim" id="inputnim" value="<?= $getEdit->nim; ?>" placeholder="Masukkan Nim">

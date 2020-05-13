@@ -59,4 +59,20 @@ class Crud extends Controller
         echo view("editdata_view",$data);
         echo view("footer",$data);
     }
+
+    public function edit($id)
+    {
+        $model = new Mahasiswa_model();
+
+        $data_form = [
+            'nim' => $this->request->getPost('nim'),
+            'nama' => $this->request->getPost('nama')
+        ];
+
+        $edit = $model->editMahasiswa($data_form,$id);
+
+        if ($edit){
+            echo '<script>alert("Update Berhasil"); window.location.href="/crud";</script>';
+        }
+    }
 }

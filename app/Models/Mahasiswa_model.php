@@ -21,4 +21,10 @@ class Mahasiswa_model extends Model
         $query = $this->db->table('mahasiswa')->insert($data);
         return $query;
     }
+
+    public function editMahasiswa($data,$id)
+    {
+        $query = $this->db->table('mahasiswa')->update($data,['nim' => $id]);
+        return $query;
+    }
 }
