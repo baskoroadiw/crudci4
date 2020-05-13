@@ -18,4 +18,30 @@ class Crud extends Controller
         echo view("lihatdata_view",$data);
         echo view("footer",$data);
     }
+
+    public function tambahdata()
+    {
+        $data = [
+            'title'     => 'Tambah Data Mahasiswa',
+            'h1'        => 'Tambah Data Mahasiswa'
+        ];
+
+        echo view("header",$data);
+        echo view("tambahdata_view");
+        echo view("footer",$data);
+    }
+
+    public function tambah()
+    {
+        $model = new Mahasiswa_model();
+
+        $data_form = [
+            'nim' => $this->request->getPost('nim'),
+            'nama' => $this->request->getPost('nama')
+        ];
+
+        $model->insertMahasiswa($data_form);
+
+        return redirect()->to("/crud");
+    }
 }

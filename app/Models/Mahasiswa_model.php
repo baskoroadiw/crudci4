@@ -9,4 +9,10 @@ class Mahasiswa_model extends Model
         $builder = $this->db->table('mahasiswa');
         return $builder->get();
     }
+
+    public function insertMahasiswa($data)
+    {
+        $query = $this->db->table('mahasiswa')->insert($data);
+        return $query;
+    }
 }
