@@ -44,4 +44,19 @@ class Crud extends Controller
 
         return redirect()->to("/crud");
     }
+
+    public function editdata($nim)
+    {
+        $model = new Mahasiswa_model();
+
+        $data = [
+            'title'     => 'Edit Data Mahasiswa',
+            'h1'        => 'Edit Data Mahasiswa',
+            'getEdit'  =>  $model->getMahasiswa($nim)->getRow()
+        ];
+
+        echo view("header",$data);
+        echo view("editdata_view",$data);
+        echo view("footer",$data);
+    }
 }

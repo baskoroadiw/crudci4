@@ -4,10 +4,16 @@ use CodeIgniter\Model;
 
 class Mahasiswa_model extends Model
 {
-    public function getMahasiswa()
+    public function getMahasiswa($nim = false)
     {
-        $builder = $this->db->table('mahasiswa');
-        return $builder->get();
+        if ($nim == false){
+            $builder = $this->db->table('mahasiswa');
+            return $builder->get();
+        }
+        else{
+            $builder = $this->db->table('mahasiswa');
+            return $builder->where('nim',$nim)->get();
+        }
     }
 
     public function insertMahasiswa($data)

@@ -21,7 +21,7 @@
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim; ?></td>
                         <td><?= $row->nama; ?></td>
-                        <td><a href="">Lihat Data</a></td>
+                        <td><a href="crud/editdata/<?php echo $row->nim ?>">Edit Data</a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
