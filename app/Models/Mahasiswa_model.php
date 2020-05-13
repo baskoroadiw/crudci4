@@ -27,4 +27,10 @@ class Mahasiswa_model extends Model
         $query = $this->db->table('mahasiswa')->update($data,['nim' => $id]);
         return $query;
     }
+
+    public function hapusMahasiswa($id)
+    {
+        $query = $this->db->table('mahasiswa')->delete(['nim' => $id]);
+        return $query;
+    }
 }

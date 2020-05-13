@@ -75,4 +75,15 @@ class Crud extends Controller
             echo '<script>alert("Update Berhasil"); window.location.href="/crud";</script>';
         }
     }
+
+    public function hapus($id)
+    {
+        $model = new Mahasiswa_model();
+
+        $edit = $model->hapusMahasiswa($id);
+
+        if ($edit){
+            echo '<script>alert("Berhasil Menghapus"); window.location.href="/crud";</script>';
+        }
+    }
 }
