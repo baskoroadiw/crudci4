@@ -17,7 +17,7 @@
                     <th>Aksi</th>
                 </tr>
                 </thead>
-                <tbody class="text-center"></tbody>
+                <tbody class="text-center" id="bodytable-data"></tbody>
             </table>
         </div>
     </div>
@@ -25,17 +25,27 @@
 <?php echo view("js_core"); ?>
 <script>
     $(function () {
-        var data = [
-            [1,'nim 1','nama 1','Edit'],
-            [2,'nim 2','nama 2','Edit'],
-            [3,'nim 3','nama 3','Edit']
-        ];
-
         $('#tabel-lihatdata').DataTable({
             searching : false,
             info : false,
             paging : false,
-            data : data
+            ajax : {
+                url: "<?= base_url(); ?>/crud/getdata",
+                type: "POST",
+                success : function (data) {
+                    var html = '';
+                    var no=1;
+                    var aksi = '<a href="javascript:void(0)">Edit Data</a>'
+                    for (var i=0;i<data.length;i++){
+                        html+= '<tr>'+
+                                '<td>'+no+++'</td>'+
+                                '<td>'+data[i].nim+'</td>'+
+                                '<td>'+data[i].nama+'</td>'+
+                                '<td>'+aksi+'</td>'
+                    }
+                    $('#bodytable-data').html(html);
+                }
+            }
         });
     });
 </script>
