@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" name="nama" id="inputnama" value="<?= $getEdit->nama; ?>" placeholder="Masukkan Nama">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="/crud/hapus/<?= $getEdit->nim; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $getEdit->nama; ?>')">Delete</a>
+                <a href="/hapus/<?= $getEdit->nim; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $getEdit->nama; ?>')">Delete</a>
             </form>
         </div>
     </div>

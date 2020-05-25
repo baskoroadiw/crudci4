@@ -42,7 +42,7 @@ class Crud extends Controller
 
         $model->insertMahasiswa($data_form);
 
-        return redirect()->to("/crud");
+        return redirect()->to("/");
     }
 
     public function editdata($nim)
@@ -72,7 +72,7 @@ class Crud extends Controller
         $edit = $model->editMahasiswa($data_form,$id);
 
         if ($edit){
-            echo '<script>alert("Update Berhasil"); window.location.href="/crud";</script>';
+            echo '<script>alert("Update Berhasil"); window.location.href="/";</script>';
         }
     }
 
@@ -83,7 +83,7 @@ class Crud extends Controller
         $edit = $model->hapusMahasiswa($id);
 
         if ($edit){
-            echo '<script>alert("Berhasil Menghapus"); window.location.href="/crud";</script>';
+            echo '<script>alert("Berhasil Menghapus"); window.location.href="/";</script>';
         }
     }
 }

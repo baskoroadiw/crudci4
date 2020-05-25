@@ -31,7 +31,9 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Crud::index');
-
+$routes->get('/tambahdata','Crud::tambahdata');
+$routes->get('/editdata/(:num)','Crud::editdata/$1');
+$routes->get('/hapus/(:num)','Crud::hapus/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

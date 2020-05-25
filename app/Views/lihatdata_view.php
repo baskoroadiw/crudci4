@@ -4,7 +4,7 @@
             <h1 class="text-center text-success mt-4"> <?= $h1;?> </h1>
         </div>
         <div class="col-sm-12 mt-5">
-            <a href="crud/tambahdata" class="btn btn-primary float-right">+ Tambah Mahasiswa</a>
+            <a href="/tambahdata" class="btn btn-primary float-right">+ Tambah Mahasiswa</a>
             <table class="table table-bordered table-striped table-dark table-hover mt-5">
                 <thead class="text-center">
                 <?php $no = 1; ?>
@@ -21,7 +21,7 @@
                         <td><?= $no++ ?></td>
                         <td><?= $row->nim; ?></td>
                         <td><?= $row->nama; ?></td>
-                        <td><a href="crud/editdata/<?php echo $row->nim ?>">Edit Data</a></td>
+                        <td><a href="/editdata/<?php echo $row->nim ?>">Edit Data</a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
