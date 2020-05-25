@@ -4,7 +4,7 @@
             <h1 class="text-center text-success mt-4"> <?= $h1;?> </h1>
         </div>
         <div class="col-sm-12 mt-5">
-            <a href="" class="btn btn-primary float-right">+ Tambah Mahasiswa</a>
+            <a href="" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-tambah">+ Tambah Mahasiswa</a>
         </div>
         <div class="col-sm-12 mt-3">
             <table class="table table-bordered table-striped table-dark table-hover mt-5" id="tabel-lihatdata">
@@ -24,8 +24,9 @@
 </div>
 <?php echo view("js_core"); ?>
 <script>
+    var tabel;
     $(function () {
-        $('#tabel-lihatdata').DataTable({
+        tabel = $('#tabel-lihatdata').DataTable({
             searching : false,
             info : false,
             paging : false,
@@ -47,5 +48,31 @@
                 }
             }
         });
+
+        $('#form-add').submit(function (e) {
+            e.preventDefault();
+
+            var dataform = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url(); ?>/crud/tambahdata',
+                dataType: 'JSON',
+                contentType : false,
+                processData: false,
+                data: dataform,
+                success: function (data) {
+                    if (data.status === 'sukses'){
+                        $('#modal-tambah').modal('hide');
+                        tabel.ajax.reload();
+                    }
+                },
+                error: function (data) {
+                    console.log('error tambah data : '+data);
+                }
+            });
+        });
+
     });
 </script>
+<?= view("modal_tambah")?>

@@ -21,4 +21,15 @@ class Crud extends Controller
 
         echo json_encode($model->getMahasiswa()->getResult());
     }
+
+    public function tambahData(){
+        $model = new mahasiswa_model();
+        $data = array(
+            'nim' => $this->request->getPost('nim'),
+            'nama' => $this->request->getPost('nama')
+        );
+        $model->insertMahasiswa($data);
+
+        echo json_encode(array('status'=>'sukses'));
+    }
 }
