@@ -9,26 +9,15 @@ class Crud extends Controller
         $model = new Mahasiswa_model();
 
         $data = [
-            'title'     => 'Lihat Data Mahasiswa',
-            'h1'        => 'Lihat Data Mahasiswa',
             'data_mhs'  => $model->getMahasiswa()->getResult()
         ];
 
-        echo view("header",$data);
         echo view("lihatdata_view",$data);
-        echo view("footer",$data);
     }
 
     public function tambahdata()
     {
-        $data = [
-            'title'     => 'Tambah Data Mahasiswa',
-            'h1'        => 'Tambah Data Mahasiswa'
-        ];
-
-        echo view("header",$data);
         echo view("tambahdata_view");
-        echo view("footer",$data);
     }
 
     public function tambah()
@@ -40,9 +29,34 @@ class Crud extends Controller
             'nama' => $this->request->getPost('nama')
         ];
 
-        $model->insertMahasiswa($data_form);
+        $ruleValidator = [
+            'nim' => [
+                'label'  => 'NIM',
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi'
+                ]
+            ],
+            'nama' => [
+                'label'  => 'Nama',
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi'
+                ]
+            ]
+        ];
 
-        return redirect()->to("/");
+        if (! $this->validate($ruleValidator))
+        {
+            session()->setFlashdata('nim-error', $this->validator->getError('nim'));
+            session()->setFlashdata('nama-error', $this->validator->getError('nama'));
+            return redirect()->to("/tambahdata");
+        }
+        else
+        {
+            $model->insertMahasiswa($data_form);
+            return redirect()->to("/");
+        }
     }
 
     public function editdata($nim)
@@ -50,14 +64,10 @@ class Crud extends Controller
         $model = new Mahasiswa_model();
 
         $data = [
-            'title'     => 'Edit Data Mahasiswa',
-            'h1'        => 'Edit Data Mahasiswa',
             'getEdit'  =>  $model->getMahasiswa($nim)->getRow()
         ];
 
-        echo view("header",$data);
         echo view("editdata_view",$data);
-        echo view("footer",$data);
     }
 
     public function edit($id)
@@ -69,9 +79,32 @@ class Crud extends Controller
             'nama' => $this->request->getPost('nama')
         ];
 
-        $edit = $model->editMahasiswa($data_form,$id);
+        $ruleValidator = [
+            'nim' => [
+                'label'  => 'NIM',
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi'
+                ]
+            ],
+            'nama' => [
+                'label'  => 'Nama',
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi'
+                ]
+            ]
+        ];
 
-        if ($edit){
+        if (! $this->validate($ruleValidator))
+        {
+            session()->setFlashdata('nim-error', $this->validator->getError('nim'));
+            session()->setFlashdata('nama-error', $this->validator->getError('nama'));
+            return redirect()->to("/editdata/".$id);
+        }
+        else
+        {
+            $model->editMahasiswa($data_form,$id);
             echo '<script>alert("Update Berhasil"); window.location.href="/";</script>';
         }
     }

@@ -1,7 +1,11 @@
+<?=view('header',[
+    'title'     => 'Lihat Data Mahasiswa'
+])?>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="text-center text-success mt-4"> <?= $h1;?> </h1>
+            <h1 class="text-center text-success mt-4">Lihat Data Mahasiswa</h1>
         </div>
         <div class="col-sm-12 mt-5">
             <a href="/tambahdata" class="btn btn-primary float-right">+ Tambah Mahasiswa</a>
@@ -29,3 +33,5 @@
         </div>
     </div>
 </div>
+
+<?=view('footer')?>
