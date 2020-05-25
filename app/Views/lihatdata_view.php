@@ -65,6 +65,7 @@
                     if (data.status === 'sukses'){
                         $('#modal-tambah').modal('hide');
                         tabel.ajax.reload();
+                        $('#form-add input').val('');
                     }
                 },
                 error: function (data) {
