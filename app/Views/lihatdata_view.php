@@ -29,6 +29,8 @@
     $(function () {
         initDatatable();
         addData();
+        editData();
     });
 </script>
 <?= view("modal_tambah")?>
+<?= view("modal_edit")?>

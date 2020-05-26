@@ -10,9 +10,20 @@ class mahasiswa_model extends Model
         return $builder->get();
     }
 
+    public function getEditData($nim){
+        $builder = $this->db->table('mahasiswa')->where(['nim' => $nim]);
+        return $builder->get();
+    }
+
     public function insertMahasiswa($data)
     {
         $query = $this->db->table('mahasiswa')->insert($data);
+        return $query;
+    }
+
+    public function editMahasiswa($data,$nim)
+    {
+        $query = $this->db->table('mahasiswa')->update($data,['nim' => $nim]);
         return $query;
     }
 }
