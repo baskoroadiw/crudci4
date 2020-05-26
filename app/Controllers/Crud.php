@@ -53,4 +53,13 @@ class Crud extends Controller
         echo json_encode(array('status'=>'sukses'));
     }
 
+    public function hapusData(){
+        $model = new mahasiswa_model();
+        $nim = $this->request->getPost('nim');
+
+        $model->hapusMahasiswa($nim);
+
+        echo json_encode(array('status'=>'sukses'));
+    }
+
 }

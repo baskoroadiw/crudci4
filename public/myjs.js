@@ -16,7 +16,7 @@ function initDatatable() {
                         '<td>'+no+++'</td>'+
                         '<td>'+data[i].nim+'</td>'+
                         '<td>'+data[i].nama+'</td>'+
-                        '<td>'+'<a href="javascript:void(0)" onclick="getEditData('+data[i].nim+')">Edit Data</a>'+'</td>'
+                        '<td>'+'<a href="javascript:void(0)" onclick="getEditData('+data[i].nim+')">Edit | </a> <a href="javascript:void(0)" onclick="hapusData('+data[i].nim+')">Hapus</a>'+'</td>'
                 }
                 $('#bodytable-data').html(html);
             }
@@ -99,4 +99,25 @@ function editData() {
             }
         });
     });
+}
+
+function hapusData(id=null) {
+    if (id){
+        $.ajax({
+            type: 'POST',
+            url: base_url+'/crud/hapusData',
+            dataType: 'JSON',
+            data: {
+                nim : id
+            },
+            success: function (data) {
+                if (data.status === 'sukses'){
+                    tabel.ajax.reload();
+                }
+            },
+            error: function (data) {
+                console.log('error hapus data: '+data);
+            }
+        });
+    }
 }
